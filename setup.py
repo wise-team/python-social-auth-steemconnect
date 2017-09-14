@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='python-social-auth-steemconnect',
-    version='0.1.0',
+    version='0.0.1',
     packages=find_packages(),
     author='Krzysztof @noisy Szumny',
     author_email='noisy.pl@gmail.com',
