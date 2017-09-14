@@ -13,6 +13,10 @@ setup(
     url='https://github.com/noisy/python-social-auth-steemconnect',
     keywords='django social auth oauth2 social-auth steem steemconnect steemit',
     classifiers=[
+        'Development Status :: 3 - Alpha',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: MIT License',
+        'Programming Language :: Python :: 3.4',
     ],
     install_requires=[
         'python-social-auth',
