@@ -10,8 +10,9 @@ class SteemConnectOAuth2(BaseOAuth2):
     BASE_URL = 'https://v2.steemconnect.com'
     AUTHORIZATION_URL = BASE_URL + '/oauth2/authorize'
     ACCESS_TOKEN_URL = BASE_URL + '/oauth2/token'
-    REVOKE_TOKEN_URL = BASE_URL + '/oauth2/token/revoke'
     ACCESS_TOKEN_METHOD = 'GET'
+    REVOKE_TOKEN_URL = BASE_URL + '/oauth2/token/revoke'
+    ACCESS_TOKEN_METHOD = 'POST'
     USER_INFO_URL = BASE_URL + '/api/me'
 
     RESPONSE_TYPE = None
@@ -25,6 +26,13 @@ class SteemConnectOAuth2(BaseOAuth2):
         ('id', 'id'),
         ('expires', 'expires')
     ]
+
+    def _get_headers(self, token):
+        return {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json',
+            'Authorization': token
+        }
 
     def get_user_details(self, response):
         """Return user details from GitHub account"""
@@ -40,12 +48,17 @@ class SteemConnectOAuth2(BaseOAuth2):
     def user_data(self, access_token, *args, **kwargs):
         """Loads user data from service"""
 
-        return self.get_json(self.USER_INFO_URL, method="POST", headers={
-            'Accept': 'application/json, text/plain, */*',
-            'Content-Type': 'application/json',
-            'Authorization': access_token
-        })
+        return self.get_json(self.USER_INFO_URL, method="POST", headers=self._get_headers(access_token))
 
     def request_access_token(self, *args, **kwargs):
         return self.strategy.request_data()
 
+    def revoke_token_params(self, token, uid):
+        params = super(SteemConnectOAuth2, self).revoke_token_params(token, uid)
+        params['token'] = token
+        return params
+
+    def revoke_token_headers(self, token, uid):
+        params = super(SteemConnectOAuth2, self).revoke_token_headers(token, uid)
+        params.update(self._get_headers(token))
+        return params
