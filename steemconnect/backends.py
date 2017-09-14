@@ -11,23 +11,27 @@ class SteemConnectOAuth2(BaseOAuth2):
     AUTHORIZATION_URL = BASE_URL + '/oauth2/authorize'
     ACCESS_TOKEN_URL = BASE_URL + '/oauth2/token'
     ACCESS_TOKEN_METHOD = 'GET'
-    REVOKE_TOKEN_URL = BASE_URL + '/oauth2/token/revoke'
+    REVOKE_TOKEN_URL = BASE_URL + '/api/oauth2/token/revoke'
     ACCESS_TOKEN_METHOD = 'POST'
     USER_INFO_URL = BASE_URL + '/api/me'
 
     RESPONSE_TYPE = None
     REDIRECT_STATE = False
     STATE_PARAMETER = False
-    SEND_USER_AGENT = False
 
     ID_KEY = 'user'
     SCOPE_SEPARATOR = ','
     EXTRA_DATA = [
         ('id', 'id'),
-        ('expires', 'expires')
+        ('expires_in', 'expires'),
+        ('scope', 'granted_scopes'),
+        ('account', 'account'),
+        ('username', 'username'),
+        ('name', 'name'),
     ]
 
-    def _get_headers(self, token):
+    @staticmethod
+    def _get_headers(token):
         return {
             'Accept': 'application/json, text/plain, */*',
             'Content-Type': 'application/json',
@@ -38,11 +42,14 @@ class SteemConnectOAuth2(BaseOAuth2):
         """Return user details from GitHub account"""
 
         account = response['account']
-        metadata = json.loads(account.get("json_metadata") or "{}")
+        metadata = json.loads(account.get('json_metadata') or '{}')
+        account['json_metadata'] = metadata
 
         return {
-            'username': account["name"],
-            'first_name': metadata.get("profile", {}).get('name', '')
+            'id': account['id'],
+            'username': account['name'],
+            'name': metadata.get("profile", {}).get('name', ''),
+            'account': account,
         }
 
     def user_data(self, access_token, *args, **kwargs):
@@ -53,12 +60,11 @@ class SteemConnectOAuth2(BaseOAuth2):
     def request_access_token(self, *args, **kwargs):
         return self.strategy.request_data()
 
-    def revoke_token_params(self, token, uid):
-        params = super(SteemConnectOAuth2, self).revoke_token_params(token, uid)
-        params['token'] = token
-        return params
-
     def revoke_token_headers(self, token, uid):
         params = super(SteemConnectOAuth2, self).revoke_token_headers(token, uid)
         params.update(self._get_headers(token))
         return params
+
+    def process_revoke_token_response(self, response):
+        success = super(SteemConnectOAuth2, self).process_revoke_token_response(response)
+        return success and response.json() == {'success': True}
