@@ -18,7 +18,7 @@ or clone from Github
 ## Pre-requisites
 
 `python-social-auth` must be installed and configured first. Please visit the
-[python-social-auth documentation](http://psa.matiasaguirre.net/docs/) for instructions.
+[python-social-auth documentation](http://python-social-auth-docs.readthedocs.io/) for instructions.
 
 
 ## Configuration instructions
