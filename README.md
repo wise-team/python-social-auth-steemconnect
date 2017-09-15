@@ -36,8 +36,16 @@ or clone from Github
         SOCIAL_AUTH_STEEMCONNECT_KEY = "..."
         SOCIAL_AUTH_STEEMCONNECT_DEFAULT_SCOPE = ['vote', 'comment']
 
+## Examples
+
+Ready to use examples of projects in Django, Flask and Tornado frameworks are prepared here:
+
+https://github.com/noisy/python-social-auth-steemconnect-examples
 
 ## Changelog
+
+### 0.0.2
+* package rename
 
 ### 0.0.1
 * Initial release
