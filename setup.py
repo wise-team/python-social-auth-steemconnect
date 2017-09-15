@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 
 setup(
-    name='python-social-auth-steemconnect',
+    name='social-auth-steemconnect',
     version='0.0.1',
     packages=find_packages(),
     author='Krzysztof @noisy Szumny',
@@ -19,6 +19,6 @@ setup(
         'Programming Language :: Python :: 3.4',
     ],
     install_requires=[
-        'python-social-auth',
+        'social-auth',
     ]
 )

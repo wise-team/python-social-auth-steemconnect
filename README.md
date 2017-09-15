@@ -8,7 +8,7 @@ Pluggable authentication backend for python-social-auth, that allows authenticat
 
 From pypi
 
-    $ pip install python-social-auth-steemconnect
+    $ pip install social-auth-steemconnect
 
 or clone from Github
 
@@ -34,7 +34,6 @@ or clone from Github
 2. Add your Waveapps settings to your django `settings.py` file.
 
         SOCIAL_AUTH_STEEMCONNECT_KEY = "..."
-        SOCIAL_AUTH_STEEMCONNECT_SECRET = "..."
         SOCIAL_AUTH_STEEMCONNECT_DEFAULT_SCOPE = ['vote', 'comment']
 
 
