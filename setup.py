@@ -10,7 +10,7 @@ setup(
     description='SteemConnect backend for python-social-auth.',
     long_description=open('README.md').read(),
     license='LICENSE',
-    url='https://github.com/noisy/python-social-auth-steemconnect',
+    url='https://github.com/wise-team/python-social-auth-steemconnect',
     keywords='django social auth oauth2 social-auth steem steemconnect steemit',
     classifiers=[
         'Development Status :: 3 - Alpha',

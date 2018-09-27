@@ -12,7 +12,7 @@ From pypi
 
 or clone from Github
 
-    $ git clone git@github.com:noisy/python-social-auth-steemconnect.git
+    $ git clone git@github.com:wise-team/python-social-auth-steemconnect.git
     $ cd python-social-auth-steemconnect && sudo python setup.py install
 
 ## Pre-requisites
@@ -40,7 +40,7 @@ or clone from Github
 
 Ready to use examples of projects in Django, Flask and Tornado frameworks are prepared here:
 
-https://github.com/noisy/python-social-auth-steemconnect-examples
+https://github.com/wise-team/python-social-auth-steemconnect-examples
 
 ## Changelog
 
