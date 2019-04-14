@@ -7,7 +7,7 @@ class SteemConnectOAuth2(BaseOAuth2):
 
     name = 'steemconnect'
 
-    BASE_URL = 'https://v2.steemconnect.com'
+    BASE_URL = 'https://steemconnect.com'
     AUTHORIZATION_URL = BASE_URL + '/oauth2/authorize'
     ACCESS_TOKEN_URL = BASE_URL + '/oauth2/token'
     ACCESS_TOKEN_METHOD = 'GET'
