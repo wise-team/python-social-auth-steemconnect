@@ -33,7 +33,7 @@ or clone from Github
 
 2. Add your Waveapps settings to your django `settings.py` file.
 
-        SOCIAL_AUTH_STEEMCONNECT_KEY = "..."
+        SOCIAL_AUTH_STEEMCONNECT_KEY = '<your-steemconnect-app-acccount>' # ex. 'myproject.app'
         SOCIAL_AUTH_STEEMCONNECT_DEFAULT_SCOPE = ['vote', 'comment']
 
 ## Examples
@@ -43,6 +43,9 @@ Ready to use examples of projects in Django, Flask and Tornado frameworks are pr
 https://github.com/wise-team/python-social-auth-steemconnect-examples
 
 ## Changelog
+
+### 0.0.3
+* SteemConnect endpoint changed from `https://v2.steemconnect.com` to `https://steemconnect.com`
 
 ### 0.0.2
 * package rename
